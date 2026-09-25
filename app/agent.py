@@ -37,11 +37,16 @@ from app.pantry_tools import (
     remove_pantry_item,
 )
 
+import os
+
+_re_id = os.environ.get("AGENT_ENGINE_RESOURCE_NAME", os.environ.get("AGENT_ENGINE_ID", "3936223040135757824"))
+_agent_engine_id = _re_id.split("/")[-1] if "/" in _re_id else _re_id
+
 # Configure Vertex AI Memory Bank Service for deployed Agent Engine
 memory_service = VertexAiMemoryBankService(
     project="qwiklabs-gcp-02-fa5a2915d776",
     location="us-east1",
-    agent_engine_id="3567701926877331456",
+    agent_engine_id=_agent_engine_id,
 )
 
 # Build A2UI v0.8 system instruction with BasicCatalog
@@ -94,7 +99,11 @@ instruction = schema_manager.generate_system_prompt(
 
 async def generate_memories_callback(callback_context: CallbackContext):
     """Callback triggered after each turn to extract and store durable memories."""
-    await callback_context.add_session_to_memory()
+    try:
+        await callback_context.add_session_to_memory()
+    except Exception as e:
+        # Gracefully handle memory bank availability in Reasoning Engine
+        pass
     return None
 
 

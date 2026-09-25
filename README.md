@@ -16,7 +16,7 @@ Based on the actual codebase implementation (`app/`), Smart Pantry Assistant pro
 - **📸 Food Image Generation**: Generates dish presentation previews using `imagen-3.0-generate-002`, saves them as session artifacts, and uploads them to Google Cloud Storage to return public HTTPS URLs (`app/image_tools.py`).
 - **📹 Food Video Clip Generation**: Generates 3–5 second food and kitchen clips using Google's Omni model (`gemini-omni-flash-preview`) in the `global` region, saves artifacts, and uploads them directly to Google Cloud Storage (`app/video_tools.py`).
 - **🎨 Adaptive UI (A2UI v0.8)**: Generates structured, responsive UI surfaces (cards, columns, rows, images) using `A2uiSchemaManager` (v0.8) and `a2ui_callback` (`app/a2ui_utils.py`).
-- **🌐 Custom FastAPI Frontend & A2A Proxy**: A branded, responsive web chat interface built with FastAPI forwarding messages to the Agent Runtime via the `a2a-sdk` (`frontend/`).
+- **🌐 Custom FastAPI Frontend & A2A Proxy**: A branded, responsive web chat interface built with FastAPI forwarding messages to the Agent Runtime via the `a2a-sdk` (`frontend/`), featuring an instant **🔄 New Chat** session reset button and `/reset` endpoint.
 
 ---
 
