@@ -113,6 +113,12 @@ def _extract_parts(parts: list) -> list[dict]:
     return out
 
 
+@app.post("/reset")
+async def reset_session():
+    _contexts.clear()
+    return JSONResponse({"status": "cleared"})
+
+
 @app.post("/chat")
 async def chat(req: Request):
     body = await req.json()

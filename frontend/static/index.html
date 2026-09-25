@@ -344,8 +344,11 @@
       <p>AI Inventory & Recipe Concierge</p>
     </div>
   </div>
-  <div class="header-status">
-    <span class="status-dot"></span> Online
+  <div class="header-status" style="display: flex; align-items: center; gap: 1rem;">
+    <button id="new-chat-btn" type="button" class="chip" style="margin: 0; background: rgba(255,255,255,0.2); color: #ffffff; border: 1px solid rgba(255,255,255,0.4); font-size: 0.85rem; padding: 0.4rem 0.8rem;">
+      <span class="material-symbols-outlined" style="color: #ffffff; font-size: 1.1rem;">refresh</span> New Chat
+    </button>
+    <div><span class="status-dot"></span> Online</div>
   </div>
 </header>
 
@@ -531,6 +534,17 @@ form.addEventListener("submit", async (ev) => {
     renderReply(b, data.parts || []);
   } catch (e) {
     b.textContent = "Error: " + e.message;
+  }
+});
+
+document.getElementById("new-chat-btn").addEventListener("click", async () => {
+  try {
+    await fetch("/reset", { method: "POST" });
+    log.innerHTML = "";
+    const b = bubble("agent");
+    b.textContent = "Session reset! I'm ready for a fresh conversation. How can I help you today?";
+  } catch (e) {
+    console.error("Failed to reset session:", e);
   }
 });
 </script>
