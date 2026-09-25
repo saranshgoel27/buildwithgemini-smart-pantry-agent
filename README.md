@@ -2,7 +2,7 @@
 
 An intelligent AI assistant for smart pantry inventory management, expiration tracking, allergy-aware recipe planning, local supermarket discovery, and multimodal dish presentation generation powered by Google's Agent Development Kit (ADK) and Vertex AI.
 
-![Smart Pantry Assistant Demo](smart_pantry_demo.gif)
+![Smart Pantry Assistant Demo](smart_pantry_demo.gif?v=2)
 
 ---
 
